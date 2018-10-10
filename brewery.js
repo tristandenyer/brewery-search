@@ -25,9 +25,6 @@ document.getElementById("search-btn").addEventListener("click", function() {
         });
       }
 
-      console.log(`Searching for "${search}"`);
-      console.log(`Sorted ${selectedSort}`);
-
       // clear results
       document.getElementById("header").textContent = "";
       resultsArea.textContent = "";
@@ -125,6 +122,41 @@ document.getElementById("search-btn").addEventListener("click", function() {
       console.log(error);
     })
     .then(function() {
-      // always executed
+      var searchpara = document.getElementById("resultsArea").innerHTML;
+      searchpara = searchpara.toString();
+
+      if (search) {
+        var pattern = new RegExp("(" + search + ")", "gi");
+        var new_search = searchpara.replace(
+          pattern,
+          "<span class='highlight'>$1</span>"
+        );
+        document.getElementById("resultsArea").innerHTML = new_search;
+      }
     });
 });
+
+// Highlighter toggle
+const toggleState = document.getElementById("resultsArea");
+const toggleClick = document.getElementById("highlightToggler");
+
+function toggleTheme() {
+  if (toggleState.dataset.highlight == "true") {
+    toggleState.dataset.highlight = "false";
+    // turn off highlight
+    toggleState.classList.toggle("highlighter-off");
+    // switch button text to 'highlight'
+    toggleClick.textContent = "Show keyword highlighting";
+  } else {
+    toggleState.dataset.highlight = "true";
+    // remove off theme
+    toggleState.classList.toggle("highlighter-off");
+    // switch button text to 'hide'
+    toggleClick.textContent = "Hide keyword highlighting";
+  }
+}
+
+if (document.getElementById("resultsArea")) {
+  // add event listener on #highlightToggler
+  toggleClick.addEventListener("click", toggleTheme);
+}

@@ -16,6 +16,16 @@
             margin-bottom: 1rem;
             background-color: #cbd3dd;
         }
+        .highlight {
+            background-color: yellow;
+            -webkit-transition: background-color 500ms ease-out;
+            -moz-transition: background-color 500ms ease-out;
+            -o-transition: background-color 500ms ease-out;
+            transition: background-color 500ms ease-out;
+        }
+        .highlighter-off .highlight {
+            background-color: transparent;
+        }
     </style>
 </head>
 
@@ -41,9 +51,16 @@
             </div>
         </div>
     </div>
-    <div id="header"></div>
+    <div class="row">
+        <div class="col-sm-10">
+            <div id="header"></div>
+        </div>
+        <div class="col-sm-2">
+            <button id="highlightToggler" class="btn btn-warning btn-sm btn-block">Hide keyword highlighting</button>
+        </div>
+    </div>
     <div id="container" class="container-fluid">
-        <div id="resultsArea" class="row">
+        <div id="resultsArea" data-highlight="true" class="row">
         </div>
     </div>
     <hr>
