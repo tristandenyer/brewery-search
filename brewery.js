@@ -39,54 +39,58 @@ document.getElementById("search-btn").addEventListener("click", function() {
 
       // loop thru sorted response to create results
       for (i = 0; i < response.data.length; i++) {
-        const card = document.createElement("div");
-        card.setAttribute("class", "card col-sm-4");
-        resultsArea.appendChild(card);
+        const div = document.createElement("div");
+        div.setAttribute("class", "col-sm-4 mb-4");
+        resultsArea.appendChild(div);
 
-        const cardBody = document.createElement("div");
-        cardBody.setAttribute("class", "card-body");
-        card.appendChild(cardBody);
+        const card = document.createElement("div");
+        card.setAttribute("class", "card");
+        div.appendChild(card);
 
         // set unique badge for each brewery_type
-        const breweryType = document.createElement("span");
+        const breweryType = document.createElement("div");
         if (`${response.data[i].brewery_type}` == "micro") {
           breweryType.setAttribute(
             "class",
-            `badge badge-primary ${response.data[i].brewery_type}`
+            `card-topper card-img-top ${response.data[i].brewery_type}`
           );
         } else if (`${response.data[i].brewery_type}` == "regional") {
           breweryType.setAttribute(
             "class",
-            `badge badge-success ${response.data[i].brewery_type}`
+            `card-topper card-img-top ${response.data[i].brewery_type}`
           );
-        } else if (`${response.data[i].brewery_type}` == "regional") {
+        } else if (`${response.data[i].brewery_type}` == "contract") {
           breweryType.setAttribute(
             "class",
-            `badge badge-danger ${response.data[i].brewery_type}`
+            `card-topper card-img-top ${response.data[i].brewery_type}`
           );
         } else if (`${response.data[i].brewery_type}` == "brewpub") {
           breweryType.setAttribute(
             "class",
-            `badge badge-warning ${response.data[i].brewery_type}`
+            `card-topper card-img-top ${response.data[i].brewery_type}`
           );
         } else if (`${response.data[i].brewery_type}` == "large") {
           breweryType.setAttribute(
             "class",
-            `badge badge-info ${response.data[i].brewery_type}`
+            `card-topper card-img-top ${response.data[i].brewery_type}`
           );
         } else if (`${response.data[i].brewery_type}` == "planning") {
           breweryType.setAttribute(
             "class",
-            `badge badge-secondary ${response.data[i].brewery_type}`
+            `card-topper card-img-top ${response.data[i].brewery_type}`
           );
         } else {
           breweryType.setAttribute(
             "class",
-            `badge badge-secondary ${response.data[i].brewery_type}`
+            `card-topper card-img-top ${response.data[i].brewery_type}`
           );
         }
         breweryType.textContent = `${response.data[i].brewery_type}`;
-        cardBody.appendChild(breweryType);
+        card.appendChild(breweryType);
+
+        const cardBody = document.createElement("div");
+        cardBody.setAttribute("class", "card-body");
+        card.appendChild(cardBody);
 
         const breweryName = document.createElement("h2");
         breweryName.setAttribute("class", "h4");
@@ -98,11 +102,11 @@ document.getElementById("search-btn").addEventListener("click", function() {
           `${response.data[i].city}` != "null" ||
           `${response.data[i].state}` != "null"
         ) {
-          const breweryLoc = document.createElement("p");
-          breweryLoc.textContent = `${response.data[i].city}, ${
-            response.data[i].state
-          }`;
-          cardBody.appendChild(breweryLoc);
+          const breweryAddress = document.createElement("address");
+          breweryAddress.innerHTML = `${response.data[i].street}<br/>${
+            response.data[i].city
+          }, ${response.data[i].state} ${response.data[i].postal_code}`;
+          cardBody.appendChild(breweryAddress);
         }
 
         // not all entries have website URLs
@@ -115,6 +119,18 @@ document.getElementById("search-btn").addEventListener("click", function() {
           href.textContent = "Website";
           cardBody.appendChild(href);
         }
+
+        const uri = `https://www.google.com/maps/search/?api=1&query=${
+          response.data[i].name
+        } ${response.data[i].state}`; /// Hmmm, the highlighter regex wraps keywords in this uri as well
+        const encoded = encodeURI(uri);
+        const mapLink = document.createElement("a");
+        mapLink.setAttribute("href", encoded);
+        mapLink.setAttribute("class", "card-link");
+        mapLink.setAttribute("target", "_blank");
+        mapLink.setAttribute("rel", "noopener noreferrer");
+        mapLink.textContent = "Map";
+        cardBody.appendChild(mapLink);
       }
     })
     .catch(function(error) {
