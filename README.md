@@ -2,7 +2,7 @@
 
 A brewery search project using the [Open Brewery DB](https://www.openbrewerydb.org/ "Open Brewery DB"), Axios promise based HTTP client and Bootstrap.
 
-A work in progress.
+A work in progress can be viewed here: https://tristandenyer.github.io/brewery-search/
 
 ## Features
 
