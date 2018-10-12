@@ -29,13 +29,13 @@ document.getElementById("search-btn").addEventListener("click", function() {
       document.getElementById("header").textContent = "";
       resultsArea.textContent = "";
 
-      // Place the h1 at top of page, before Cards
-      const h1 = document.createElement("h1");
-      h1.setAttribute("class", "h3");
-      h1.textContent = `We found ${
+      // Place the h2 at top of page, before Cards
+      const h2 = document.createElement("h2");
+      h2.setAttribute("class", "h3");
+      h2.textContent = `We found ${
         response.data.length
       } breweries for "${search}"`;
-      document.getElementById("header").appendChild(h1);
+      document.getElementById("header").appendChild(h2);
 
       // loop thru sorted response to create results
       for (i = 0; i < response.data.length; i++) {
@@ -155,16 +155,28 @@ document.getElementById("search-btn").addEventListener("click", function() {
 // Highlighter toggle
 const toggleState = document.getElementById("resultsArea");
 const toggleClick = document.getElementById("highlightToggler");
+let toggleHighlighter = toggleState.classList.toggle("highlighter-off");
+
+(function() {
+  if (sessionStorage.getItem("highlighting") === "is_off") {
+    toggleClick.textContent = "Show keyword highlighting";
+    toggleState.classList.add("highlighter-off");
+  } else {
+    sessionStorage.setItem("highlighting", "is_on");
+    toggleClick.textContent = "Hide keyword highlighting";
+    toggleState.classList.remove("highlighter-off");
+  }
+})();
 
 function toggleTheme() {
-  if (toggleState.dataset.highlight == "true") {
-    toggleState.dataset.highlight = "false";
+  if (sessionStorage.getItem("highlighting") === "is_on") {
+    sessionStorage.setItem("highlighting", "is_off");
     // turn off highlight
     toggleState.classList.toggle("highlighter-off");
     // switch button text to 'highlight'
     toggleClick.textContent = "Show keyword highlighting";
   } else {
-    toggleState.dataset.highlight = "true";
+    sessionStorage.setItem("highlighting", "is_on");
     // remove off theme
     toggleState.classList.toggle("highlighter-off");
     // switch button text to 'hide'

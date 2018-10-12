@@ -11,9 +11,9 @@ A work in progress can be viewed here: https://tristandenyer.github.io/brewery-s
 - color coded brewery types
 - highlight text you searched for in results
 - address and link to a map
+- storing keyword highlighter state in session storage
 
 ### Future features
 
 - filter by brewery type
 - filter by state (though you can just search for state name)
-- store keyword highlighter in local/session storage

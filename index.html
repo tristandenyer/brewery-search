@@ -8,13 +8,28 @@
         crossorigin="anonymous">
     <style>
         body {
-            padding: 1rem;
+            padding: 0;
             background-color: #e5ebec;
+            
+        }
+        h1 {
+            padding: 3rem 0;
+        }
+        #hero-area {
+            padding-bottom: 2rem;
+            margin-bottom: 2rem; 
+            background:linear-gradient(150deg,#F2994A 15%,#F2C94C 94%)
+        }
+        .container-fluid {
+            position: relative;
         }
         .search-box {
             padding: 2rem;
             margin-bottom: 1rem;
-            background-color: #cbd3dd;
+            background-color: rgba(255,255,255,.3);
+        }
+        #results-header {
+            padding-bottom: 1rem
         }
         .highlight {
             background-color: yellow;
@@ -33,64 +48,80 @@
             text-transform: uppercase;
         }
         .card-topper.micro {
-            background-color: #ecbbdc;
+            background-color: #f0d0b5;
         }
         .card-topper.planning {
-            background-color: #dbdbdb;
+            background-color: #e9e9e9;
         }
         .card-topper.large {
-            background-color: #bbc8ec;
+            background-color: #b5cff0;
         }
         .card-topper.brewpub {
-            background-color: #ece7bb;
+            background-color: #f0b5eb;
         }
         .card-topper.regional {
-            background-color: #bbecc5;
+            background-color: #b5f0ba;
         }
         .card-topper.contract {
-            background-color: #ecc6bb;
+            background-color: #b5f0ba;
         }
     </style>
 </head>
 
 <body>
-    <div class="search-box text-center">
-        <div class="row justify-content-center">
-            <div class="col-sm-4">
-                <label for="staticEmail2" class="sr-only">Search</label>
-                <input type="text" class="form-control" id="search-input" placeholder="What are you looking for?">
-            </div>
-            <div class="col-sm-3">
-                <div class="custom-control custom-radio custom-control-inline mt-2 mb-2">
-                    <input type="radio" id="AtoZ" name="sort-order" class="custom-control-input" value="AtoZ">
-                    <label class="custom-control-label" for="AtoZ">Sort A-Z</label>
-                </div>
-                <div class="custom-control custom-radio custom-control-inline mt-2 mb-2">
-                    <input type="radio" id="ZtoA" name="sort-order" class="custom-control-input" value="ZtoA">
-                    <label class="custom-control-label" for="ZtoA">Sort Z-A</label>
+    <div id="hero-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="text-center col-sm-8">
+                    <h1>Brewery Search</h1>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <button id="search-btn" class="btn btn-primary btn-block">Search</button>
+            <div class="row justify-content-center">
+                <div class="search-box text-center col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="staticEmail2" class="sr-only">Search</label>
+                            <input type="text" class="form-control" id="search-input" placeholder="What are you looking for?">
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="custom-control custom-radio custom-control-inline mt-2 mb-2">
+                                <input type="radio" id="AtoZ" name="sort-order" class="custom-control-input" value="AtoZ">
+                                <label class="custom-control-label" for="AtoZ">Sort A-Z</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline mt-2 mb-2">
+                                <input type="radio" id="ZtoA" name="sort-order" class="custom-control-input" value="ZtoA">
+                                <label class="custom-control-label" for="ZtoA">Sort Z-A</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button id="search-btn" class="btn btn-dark btn-block">Search</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-10">
-            <div id="header"></div>
+    <div class="container-fluid">
+        <div id="container" class="container-fluid">
+            <div class="row" id="results-header">
+                <div class="col-sm-9">
+                    <div id="header"></div>
+                </div>
+                <div class="col-sm-3 text-right">
+                    <button id="highlightToggler" class="btn btn-warning btn-sm">Hide keyword highlighting</button>
+                </div>
+            </div>
+            <div id="resultsArea" data-highlight="true" class="row">
+            </div>
         </div>
-        <div class="col-sm-2">
-            <button id="highlightToggler" class="btn btn-warning btn-sm btn-block">Hide keyword highlighting</button>
-        </div>
+        <hr>
+        <small>Using the <a href="https://www.openbrewerydb.org/" target="_blank" rel="noopener noreferrer">Open
+                Brewery DB</a>
+            by <a href="https://chrisjmears.com" target="_blank" rel="noopener noreferrer">Chris J Mears</a> and <a
+                href="https://wanderingleafstudios.com/" target="_blank" rel="noopener noreferrer">Wandering Leaf
+                Studios LLC.</a></small>
     </div>
-    <div id="container" class="container-fluid">
-        <div id="resultsArea" data-highlight="true" class="row">
-        </div>
-    </div>
-    <hr>
-    <small>Using the <a href="https://www.openbrewerydb.org/" target="_blank" rel="noopener noreferrer">Open Brewery DB</a>
-        by <a href="https://chrisjmears.com" target="_blank" rel="noopener noreferrer">Chris J Mears</a> and <a href="https://wanderingleafstudios.com/"
-            target="_blank" rel="noopener noreferrer">Wandering Leaf Studios LLC.</a></small>
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="brewery.js"></script>
 </body>
