@@ -9,7 +9,7 @@
     <style>
         body {
             padding: 0;
-            background-color: #e5ebec;
+            background-color: #ececea;
             
         }
         h1 {
@@ -18,7 +18,7 @@
         #hero-area {
             padding-bottom: 2rem;
             margin-bottom: 2rem; 
-            background:linear-gradient(150deg,#F2994A 15%,#F2C94C 94%)
+            background:linear-gradient(150deg,#bc7012 5%,#efd002 94%)
         }
         .container-fluid {
             position: relative;
@@ -27,6 +27,7 @@
             padding: 2rem;
             margin-bottom: 1rem;
             background-color: rgba(255,255,255,.3);
+            border-radius: 4px
         }
         #results-header {
             padding-bottom: 1rem
@@ -51,7 +52,7 @@
             background-color: #f0d0b5;
         }
         .card-topper.planning {
-            background-color: #e9e9e9;
+            background-color: #d4d4d4;
         }
         .card-topper.large {
             background-color: #b5cff0;
@@ -63,37 +64,49 @@
             background-color: #b5f0ba;
         }
         .card-topper.contract {
-            background-color: #b5f0ba;
+            background-color: #f0efb5;
+        }
+        .card-topper.proprietor {
+            background-color: #f0b5c4;
+        }
+        #footer {
+            border-top: 1px solid #ccc;
+            padding: 1rem 0;
         }
     </style>
 </head>
 
 <body>
     <div id="hero-area">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="text-center col-sm-8">
                     <h1>Brewery Search</h1>
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="search-box text-center col-sm-8">
+                <div class="search-box text-center col-sm-7 col-md-11 col-lg-7">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-md-4">
                             <label for="staticEmail2" class="sr-only">Search</label>
                             <input type="text" class="form-control" id="search-input" placeholder="What are you looking for?">
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-md-auto">
                             <div class="custom-control custom-radio custom-control-inline mt-2 mb-2">
-                                <input type="radio" id="AtoZ" name="sort-order" class="custom-control-input" value="AtoZ">
-                                <label class="custom-control-label" for="AtoZ">Sort A-Z</label>
+                                <input type="radio" id="AtoZ" name="sort-order" class="custom-control-input" value="AtoZ"
+                                    checked>
+                                <label class="custom-control-label" for="AtoZ">A-Z</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline mt-2 mb-2">
                                 <input type="radio" id="ZtoA" name="sort-order" class="custom-control-input" value="ZtoA">
-                                <label class="custom-control-label" for="ZtoA">Sort Z-A</label>
+                                <label class="custom-control-label" for="ZtoA">Z-A</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline mt-2 mb-2">
+                                <input type="radio" id="groupType" name="sort-order" class="custom-control-input" value="groupType">
+                                <label class="custom-control-label" for="groupType">Group type</label>
                             </div>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col">
                             <button id="search-btn" class="btn btn-dark btn-block">Search</button>
                         </div>
                     </div>
@@ -104,22 +117,23 @@
     <div class="container-fluid">
         <div id="container" class="container-fluid">
             <div class="row" id="results-header">
-                <div class="col-sm-9">
+                <div class="col-sm-12 col-md-8 col-lg-9">
                     <div id="header"></div>
                 </div>
-                <div class="col-sm-3 text-right">
+                <div class="col-sm-12 col-md-4 col-lg-3 text-right">
                     <button id="highlightToggler" class="btn btn-warning btn-sm">Hide keyword highlighting</button>
                 </div>
             </div>
             <div id="resultsArea" data-highlight="true" class="row">
             </div>
+            <div id="footer">
+                <small>This is a work in progress using the <a href="https://www.openbrewerydb.org/" target="_blank"
+                        rel="noopener noreferrer">Open Brewery DB</a> by <a href="https://chrisjmears.com" target="_blank"
+                        rel="noopener noreferrer">Chris J Mears</a> and <a href="https://wanderingleafstudios.com/"
+                        target="_blank" rel="noopener noreferrer">Wandering
+                        Leaf Studios LLC.</a></small>
+            </div>
         </div>
-        <hr>
-        <small>Using the <a href="https://www.openbrewerydb.org/" target="_blank" rel="noopener noreferrer">Open
-                Brewery DB</a>
-            by <a href="https://chrisjmears.com" target="_blank" rel="noopener noreferrer">Chris J Mears</a> and <a
-                href="https://wanderingleafstudios.com/" target="_blank" rel="noopener noreferrer">Wandering Leaf
-                Studios LLC.</a></small>
     </div>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
