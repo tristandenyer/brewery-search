@@ -12,16 +12,62 @@
         body {
             padding: 0;
             background-color: #ececea;
-            
         }
         h1 {
             padding: 3rem 0;
         }
+        #white-area{
+            height: 30px;
+            display: flex;
+            background: black
+        }
         #hero-area {
+            width:100%;
+            display: inline-block;
+            vertical-align: middle;
+            -webkit-transform: perspective(1px) translateZ(0);
+            transform: perspective(1px) translateZ(0);
+            position: relative;
+            -webkit-transition-property: color;
+            transition-property: color;
+            -webkit-transition-duration: 0.5s;
+            transition-duration: 0.5s;
             padding-bottom: 2rem;
             margin-bottom: 2rem; 
-            background:linear-gradient(150deg,#bc7012 5%,#efd002 94%)
+            background:grey;
+            border-radius: 0 0 2% 2%
+
         }
+        #hero-area:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top,#bc7012 5%,#efd002 94%, white);
+            -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+            -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+            -webkit-transition-property: transform;
+            transition-property: transform;
+            -webkit-transition-duration: 1.5s;
+            transition-duration: 1.5s;
+            -webkit-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+            border-radius: 0 0 2% 2%
+            
+        }
+
+        #hero-area:hover:before, #hero-area:focus:before, #hero-area:active:before {
+            -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+            -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+            transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+        }
+
         .container-fluid {
             position: relative;
         }
@@ -75,11 +121,14 @@
             border-top: 1px solid #ccc;
             padding: 1rem 0;
         }
+
     </style>
 </head>
 
 <body>
+
     <div id="hero-area">
+        
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="text-center col-sm-8">
