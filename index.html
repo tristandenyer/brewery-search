@@ -15,30 +15,43 @@
         }
         h1 {
             padding: 3rem 0;
-        }
-        #white-area{
-            height: 30px;
-            display: flex;
-            background: black
+
         }
         #hero-area {
             width:100%;
             display: inline-block;
             vertical-align: middle;
+            position: relative;
+
             -webkit-transform: perspective(1px) translateZ(0);
             transform: perspective(1px) translateZ(0);
-            position: relative;
             -webkit-transition-property: color;
             transition-property: color;
             -webkit-transition-duration: 0.5s;
             transition-duration: 0.5s;
+
             padding-bottom: 2rem;
             margin-bottom: 2rem; 
-            background:grey;
-            border-radius: 0 0 2% 2%
+            background:rgb(192, 192, 192);
+            box-shadow: inset 0px -15px 76px -3px rgb(255, 255, 255);
+            box-shadow: 0px 14px 13px -12px rgba(0,0,0,0.75);
 
+            border: 6px solid #fff;
+            border-top: 2px transparent;
+            
+            border-radius: 20px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
         }
         #hero-area:before {
+            
+            border-radius: 15px;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+
+            margin: 5px;
+            margin-top: 0px;
+
             content: "";
             position: absolute;
             z-index: -1;
@@ -46,7 +59,9 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to top,#bc7012 5%,#efd002 94%, white);
+
+            background: linear-gradient(to top,#bc7012 15%,#efd002 85%, white);
+
             -webkit-transform: scaleY(0);
             transform: scaleY(0);
             -webkit-transform-origin: 50% 100%;
@@ -57,8 +72,7 @@
             transition-duration: 1.5s;
             -webkit-transition-timing-function: ease-out;
             transition-timing-function: ease-out;
-            border-radius: 0 0 2% 2%
-            
+
         }
 
         #hero-area:hover:before, #hero-area:focus:before, #hero-area:active:before {
@@ -66,6 +80,10 @@
             transform: scaleY(1);
             -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
             transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+        }
+
+        #hero-area:hover:before > div >  div >  h1, #hero-area:focus:before > div > div > h1, #hero-area:active:before > div > div > h1{
+            color: white;
         }
 
         .container-fluid {
