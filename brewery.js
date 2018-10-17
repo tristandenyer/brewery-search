@@ -63,47 +63,13 @@ document.getElementById("search-btn").addEventListener("click", function() {
 
           // set unique badge for each brewery_type
           const breweryType = document.createElement("div");
-          if (`${response.data[i].brewery_type}` == "micro") {
-            breweryType.setAttribute(
-              "class",
-              `card-topper card-img-top ${response.data[i].brewery_type}`
-            );
-          } else if (`${response.data[i].brewery_type}` == "regional") {
-            breweryType.setAttribute(
-              "class",
-              `card-topper card-img-top ${response.data[i].brewery_type}`
-            );
-          } else if (`${response.data[i].brewery_type}` == "contract") {
-            breweryType.setAttribute(
-              "class",
-              `card-topper card-img-top ${response.data[i].brewery_type}`
-            );
-          } else if (`${response.data[i].brewery_type}` == "brewpub") {
-            breweryType.setAttribute(
-              "class",
-              `card-topper card-img-top ${response.data[i].brewery_type}`
-            );
-          } else if (`${response.data[i].brewery_type}` == "large") {
-            breweryType.setAttribute(
-              "class",
-              `card-topper card-img-top ${response.data[i].brewery_type}`
-            );
-          } else if (`${response.data[i].brewery_type}` == "planning") {
-            breweryType.setAttribute(
-              "class",
-              `card-topper card-img-top ${response.data[i].brewery_type}`
-            );
-          } else if (`${response.data[i].brewery_type}` == "proprietor") {
-            breweryType.setAttribute(
-              "class",
-              `card-topper card-img-top ${response.data[i].brewery_type}`
-            );
-          } else {
+          if (`${response.data[i].brewery_type}`) {
             breweryType.setAttribute(
               "class",
               `card-topper card-img-top ${response.data[i].brewery_type}`
             );
           }
+          
           breweryType.textContent = `${response.data[i].brewery_type}`;
           card.appendChild(breweryType);
 
