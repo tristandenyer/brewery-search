@@ -1,4 +1,4 @@
-## Describe what this PR is for?
+## Describe what this PR is for
 Provide some context for the reviewer to help them understand what the PR addresses, fixes, changes.
 
 ## Does this address a known issue?
