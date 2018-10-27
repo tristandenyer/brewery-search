@@ -7,4 +7,4 @@ If you are submitting this PR against a known issue, please add it's number here
 ## How should the reviewer approach this PR?
 I find it helpful to list steps to review your changes fully. Even if you think the reviewer will understand it, it's best to err on the side that they don't know.
 
-## Anythign else?
+## Anything else?
