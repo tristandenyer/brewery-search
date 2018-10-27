@@ -1,5 +1,5 @@
 ---
-name: Custom issue template
+name: Template for all issues
 about: Guidelines for creating an issue
 
 ---
