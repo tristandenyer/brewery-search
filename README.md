@@ -4,6 +4,9 @@ A brewery search project using the [Open Brewery DB](https://www.openbrewerydb.o
 
 A work in progress demo can be viewed here: https://tristandenyer.github.io/brewery-search/
 
+You can also import a version of this as a collection in Postman, and view the response using the Visualizer feature.
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/04c6fb15b2c0dc41c478)
+
 ## An Open Source project for first-timers and non-techincal
 This is now an active open source project with the mission to be an approachable project for first-timers, designers, and non-technical contributors. **Your time and feedback on this is very much warranted.** I want this project to be an open collaboration, and approachable so people new to Git, GitHub, Git flow, PRs and whathaveyou are willing to come work on it and get their feet wet. THAT approachability is more important than anything else with the project.
 
