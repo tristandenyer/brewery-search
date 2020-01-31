@@ -117,11 +117,20 @@ var InstantSearch = {
 
 document.getElementById("search-btn").addEventListener("click", function() {
   let search = document.getElementById("search-input").value;
+  let state = document.getElementById("state-search-input").value;
+  if(!state && !search){
+    alert("Enter a search term!");
+  }
+  var url = `/search?query=${search}`
+  if (!search){
+     url = `?by_state=${state}`
+  } else if(state && search){
+    url = `?by_state=${state}&by_name=${search}`
+  }
 
-  if (search != "") {
     // Make a request for breweries with search term
     axios
-      .get(`/search?query=${search}`)
+      .get(url)
       .then(function(response) {
         // which sort order do they want?
         const sortResults = document.getElementsByName("sort-order");
@@ -234,9 +243,6 @@ document.getElementById("search-btn").addEventListener("click", function() {
           InstantSearch.highlight(results, search);                 
         }
       });
-  } else {
-    alert("Enter a search term!");
-  }
 });
 
 // Highlighter toggle
