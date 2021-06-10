@@ -4,7 +4,7 @@ const input = document.getElementById("search-input");
 
 input.addEventListener("keyup", function(e) {
   e.preventDefault();
-  if (e.keyCode === 13) {
+  if (e.key === 'Enter') {
     document.getElementById("search-btn").click();
   }
 });
@@ -76,8 +76,8 @@ var InstantSearch = {
             nodeVal = nodeVal.substring(foundIndex + myToken.length);
           } // Whend
 
-        } // Next i 
-      }; // End Function checkAndReplace 
+        } // Next i
+      }; // End Function checkAndReplace
 
       function iterator(p) {
         if (p === null) return;
@@ -97,21 +97,21 @@ var InstantSearch = {
       }; // End Function iterator
 
       iterator(options[id.container]);
-    } // End Function highlighter    
+    } // End Function highlighter
 
     internalHighlighter({
-      container: container, 
+      container: container,
       all: {
         className: "highlighter"
       },
       tokens: [
         {
-          token: highlightText, 
-          className: "highlight", 
+          token: highlightText,
+          className: "highlight",
           sensitiveSearch: false
         }
       ]
-    }); // End Call internalHighlighter 
+    }); // End Call internalHighlighter
   } // End Function highlight
 };
 
@@ -175,7 +175,7 @@ document.getElementById("search-btn").addEventListener("click", function() {
               `card-topper card-img-top ${response.data[i].brewery_type}`
             );
           }
-          
+
           breweryType.textContent = `${response.data[i].brewery_type}`;
           card.appendChild(breweryType);
 
@@ -188,20 +188,16 @@ document.getElementById("search-btn").addEventListener("click", function() {
           breweryName.textContent = `${response.data[i].name}`;
           cardBody.appendChild(breweryName);
 
-          // some city and state data were coming back null
-          if (
-            `${response.data[i].city}` != "null" ||
-            `${response.data[i].state}` != "null"
-          ) {
-            const breweryAddress = document.createElement("address");
-            breweryAddress.innerHTML = `${response.data[i].street}<br/>${
-              response.data[i].city
-            }, ${response.data[i].state} ${response.data[i].postal_code}`;
-            cardBody.appendChild(breweryAddress);
-          }
+          const breweryAddress = document.createElement("address");
+          const street = response.data[i].street || "";
+          const city = response.data[i].city || "";
+          const state = response.data[i].state || "";
+          const zip = response.data[i].postal_code || "";
+          breweryAddress.innerHTML = `${street}<br/>${city}, ${state} ${zip}`;
+          cardBody.appendChild(breweryAddress);
 
           // not all entries have website URLs
-          if (`${response.data[i].website_url}` != null) {
+          if (response.data[i].website_url != null) {
             const href = document.createElement("a");
             href.setAttribute("href", `${response.data[i].website_url}`);
             href.setAttribute("class", "card-link");
@@ -231,7 +227,7 @@ document.getElementById("search-btn").addEventListener("click", function() {
       .then(function() {
         if(search){
           var results = document.getElementById("resultsArea");
-          InstantSearch.highlight(results, search);                 
+          InstantSearch.highlight(results, search);
         }
       });
   } else {
